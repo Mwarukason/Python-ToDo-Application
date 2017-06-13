@@ -32,3 +32,22 @@ def Create():
         cursor.close()
         conn.close()
         txt_output.config(text="Created a data!", fg="blue")
+
+#delete function:
+def Delete():
+    if not tree.selection():
+        txt_output.config(text="Please select a task you would like to delete", fg="red")
+    else:
+        result = tkMessageBox.askquestion('TODOList APPLICATION', 'Are you sure you want to delete this task?',
+                                          icon="warning")
+        if result == 'yes':
+            curItem = tree.focus()
+            contents = (tree.item(curItem))
+            selecteditem = contents['values']
+            tree.delete(curItem)
+            Databaseconnect()
+            cursor.execute("DELETE FROM `todolist` WHERE `task_id` = %d" % selecteditem[0])
+            conn.commit()
+            cursor.close()
+            conn.close()
+            txt_output.config(text="Task has been deleted", fg="black")
