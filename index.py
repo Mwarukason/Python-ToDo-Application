@@ -2,7 +2,7 @@
 #contains all methods of edit, create, delete, etc
 from funct_methoz import*
 
-initiate t
+# initiate t
 start_root = Tk()
 start_root.title("TODOList APPLICATION")#title
 width_screen = start_root.winfo_screenwidth()
