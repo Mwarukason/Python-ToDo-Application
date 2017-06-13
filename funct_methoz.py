@@ -63,3 +63,26 @@ def Read():
     cursor.close()
     conn.close()
     txt_output.config(text="Data has been read", fg="blue")
+
+#update the task:
+def Update():
+    Databaseconnect()
+    if TODO.get() == "":
+        txt_output.config(text="Please select a task you would like to update", fg="red")
+    else:
+        tree.delete(*tree.get_children())
+        cursor.execute("UPDATE `todolist` SET `firstname` = ? WHERE `todovalue` = ?",
+                       (str(TODO.get()), StringVar(todovalue)))
+        conn.commit()
+        cursor.execute("SELECT * FROM `todolist` ORDER BY `todovalue` ASC")
+        fetch = cursor.fetchall()
+        for data in fetch:
+            tree.insert('', 'end', values=(data[0]))
+        cursor.close()
+        conn.close()
+        TODO.set("")
+        evnt_create.config(state=NORMAL)
+        evnt_read.config(state=NORMAL)
+        evnt_update.config(state=DISABLED)
+        evnt_delete.config(state=NORMAL)
+        txt_output.config(text="Task has been successifully edited", fg="blue")
