@@ -107,3 +107,18 @@ def Exit():
     if result == 'yes':
         start_root.destroy()
         exit()
+
+#variable declaration and assign
+TODO = StringVar()
+
+#windows form size
+Up = Frame(start_root, width=300, height=50, bd=8, relief="raise")
+Up.pack(side=TOP)
+Left = Frame(start_root, width=300, height=200, bd=8, relief="raise")
+Left.pack(side=LEFT)
+Right = Frame(start_root, width=600, height=500, bd=8, relief="raise")
+Right.pack(side=RIGHT)
+Forms = Frame(Left, width=300, height=450)
+Forms.pack(side=TOP)
+Buttons = Frame(Left, width=300, height=100, bd=8, relief="raise")
+Buttons.pack(side=BOTTOM)
