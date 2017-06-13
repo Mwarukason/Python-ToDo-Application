@@ -51,3 +51,15 @@ def Delete():
             cursor.close()
             conn.close()
             txt_output.config(text="Task has been deleted", fg="black")
+
+#read values function
+def Read():
+    tree.delete(*tree.get_children())
+    Databaseconnect()
+    cursor.execute("SELECT * FROM `todolist` ORDER BY `todovalue` ASC")
+    fetch = cursor.fetchall()
+    for data in fetch:
+        tree.insert('', 'end', values=(data[0]))
+    cursor.close()
+    conn.close()
+    txt_output.config(text="Data has been read", fg="blue")
