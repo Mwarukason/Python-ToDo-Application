@@ -12,12 +12,12 @@ height_screen = start_root.winfo_screenheight()
 width = 600
 height = 200
 
-#
+#windows screen resize
 x = (width_screen/2) - (width/2)
 y = (height_screen/2) - (height/2)
 start_root.geometry('%dx%d+%d+%d' % (width, height, x, y))
 start_root.resizable(0, 0)
 
-#===main function to start the application
+#main function to start the application
 if __name__ == '__main__':
     start_root.mainloop()
