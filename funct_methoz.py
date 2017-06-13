@@ -86,3 +86,17 @@ def Update():
         evnt_update.config(state=DISABLED)
         evnt_delete.config(state=NORMAL)
         txt_output.config(text="Task has been successifully edited", fg="blue")
+
+#when u select event to update:
+def OnSelected(event):
+    global task_id;
+    curItem = tree.focus()
+    contents = (tree.item(curItem))
+    selecteditem = contents['values']
+    task_id = selecteditem[0]
+    TODO.set("")
+    TODO.set(selecteditem[1])
+    btn_create.config(state=DISABLED)
+    btn_read.config(state=DISABLED)
+    btn_update.config(state=NORMAL)
+    btn_delete.config(state=DISABLED)
