@@ -100,3 +100,10 @@ def OnSelected(event):
     btn_read.config(state=DISABLED)
     btn_update.config(state=NORMAL)
     btn_delete.config(state=DISABLED)
+
+#exit function:
+def Exit():
+    result = tkMessageBox.askquestion('TODOList APPLICATION', 'Are you sure you want to exit?', icon="warning")
+    if result == 'yes':
+        start_root.destroy()
+        exit()
