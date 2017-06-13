@@ -122,3 +122,42 @@ Forms = Frame(Left, width=300, height=450)
 Forms.pack(side=TOP)
 Buttons = Frame(Left, width=300, height=100, bd=8, relief="raise")
 Buttons.pack(side=BOTTOM)
+
+
+#label for add task
+txt_title = Label(Up, width=600, font=('arial', 24), text = "TODOList APPLICATION")
+txt_title.pack()
+txt_task = Label(Forms, text="ADD TASK:", font=('arial', 16), bd=15)
+txt_task.grid(row=0, sticky="e")
+txt_output = Label(Buttons)
+txt_output.pack(side=TOP)
+
+#entry tasks
+todovalue = Entry(Forms, textvariable=TODO, width=40)
+todovalue.grid(row=0, column=1)
+
+#buttons dimentions
+evnt_add = Button(Buttons, width=10, text="ADD", command=Create)
+evnt_add.pack(side=LEFT)
+evnt_read = Button(Buttons, width=10, text="READ", command=Read )
+evnt_read.pack(side=LEFT)
+evnt_edit = Button(Buttons, width=10, text="EDIT", command=Update, state=DISABLED)
+evnt_edit.pack(side=LEFT)
+evnt_delete = Button(Buttons, width=10, text="DELETE", command=Delete)
+evnt_delete.pack(side=LEFT)
+evnt_exit = Button(Buttons, width=10, text="EXIT", command=Exit)
+evnt_exit.pack(side=LEFT)
+
+#widgets
+scrollbary = Scrollbar(Right, orient=VERTICAL)
+scrollbarx = Scrollbar(Right, orient=HORIZONTAL)
+tree = ttk.Treeview(Right, columns=("todovalue"), selectmode="extended", height=500, yscrollcommand=scrollbary.set, xscrollcommand=scrollbarx.set)
+scrollbary.config(command=tree.yview)
+scrollbary.pack(side=RIGHT, fill=Y)
+scrollbarx.config(command=tree.xview)
+scrollbarx.pack(side=BOTTOM, fill=X)
+tree.heading('todovalue', text="LIST OF TASKS ADDED", anchor=W)
+tree.column('#0', stretch=NO, minwidth=0, width=0)
+tree.column('#1', stretch=NO, minwidth=0, width=200)
+tree.pack()
+tree.bind('<Double-Button-1>', OnSelected)
